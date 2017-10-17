@@ -1,5 +1,4 @@
 
-import java.util.ArrayList;
 import java.math.BigInteger;
 import java.util.Scanner;
 
@@ -38,16 +37,20 @@ public class AffineCipher{
     }
     
     
- public static void decryption(String input,int a,int b)
+ public static void decryption(String msg,int a,int b)
     {
         
-    input=input.toLowerCase();
+    msg=msg.toLowerCase();
     StringBuilder p = new StringBuilder();
     BigInteger inverse = BigInteger.valueOf(a).modInverse(BigInteger.valueOf(26));
-    for (int in = 0; in < input.length(); in++) 
+    for (int in = 0; in < msg.length(); in++) 
     {
         char character = input.charAt(in);
-        if (Character.isLetter(character))
+        if(character == ' ')
+            {
+                c.append(" ");
+            }
+        else (Character.isLetter(character))
         {
             int decoded = inverse.intValue() * (character - 'a' - b + 26);
             character = (char) (decoded % 26 + 'a');
@@ -66,7 +69,7 @@ public class AffineCipher{
         in.nextLine();
         if(n==1)
         {
-            System.out.println("Please enter your message");
+        System.out.println("Please enter your message");
         String msg=in.nextLine();
         System.out.println("Please enter a and b values");
         System.out.print("a = ");
