@@ -72,7 +72,7 @@ public class AffineCipher{
         System.out.print("a = ");
         int a=in.nextInt();
         in.nextLine();
-        System.out.print("a = ");
+        System.out.print("b = ");
         int b=in.nextInt();
         
         encryption(msg,a,b);
@@ -86,7 +86,7 @@ public class AffineCipher{
         System.out.print("a = ");
         int a=in.nextInt();
         in.nextLine();
-        System.out.print("a = ");
+        System.out.print("b = ");
         int b=in.nextInt();
         
         decryption(msg,a,b);
