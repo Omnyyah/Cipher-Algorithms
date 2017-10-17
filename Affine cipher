@@ -38,7 +38,7 @@ public class AffineCipher{
     }
     
     
-    static void decryption(String input,int a,int b)
+ public static void decryption(String input,int a,int b)
     {
         
     input=input.toLowerCase();
