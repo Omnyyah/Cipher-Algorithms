@@ -1,87 +1,58 @@
 import java.util.Scanner;
 
-public class CaesarCipher
-{
-    public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+import static java.lang.System.out;
 
-    public static void encryption(String msg,int shift)
-    {
-        msg=msg.toLowerCase();
-        String cipher= "";
-        
-        for(int i=0;i<msg.length();i++)
-        {
-            if(msg.charAt(i) == ' ')
-            {
-                cipher+=" ";
-            }
-            else
-            {
-            int charPosition = ALPHABET.indexOf(msg.charAt(i));
-            int keyVal = (shift + charPosition) % 26;
-            char replaceVal = ALPHABET.charAt(keyVal);
-            cipher += replaceVal;
-            }
-            
-        }
-        
-        System.out.println(cipher); 
-        
+public class CaesarCipher {
+    public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+    public static Scanner in = new Scanner(System.in);
+
+    public static String encryption(String msg, int shift) {
+        return msg.toLowerCase()
+                .codePoints()
+                .mapToObj(c -> Character.isWhitespace(c) ? ' ' : ALPHABET.charAt((shift + ALPHABET.indexOf((char) c)) % 26))
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
     }
-    
-    
-    public static void decryption(String msg,int shift)
-    {
-        msg = msg.toLowerCase();
-        String plainText = "";
-        for (int i = 0; i < msg.length(); i++)
-        {
-             if(msg.charAt(i) == ' ')
-            {
-                plainText+=" ";
-            }
-            else
-            {
-            int charPosition = ALPHABET.indexOf(msg.charAt(i));
-            int keyVal = (charPosition - shift) % 26;
-            if (keyVal < 0)
-            {
-                keyVal = ALPHABET.length() + keyVal;
-            }
-            char replaceVal = ALPHABET.charAt(keyVal);
-            plainText += replaceVal;
-        }
-        }
-        
-         System.out.println(plainText); 
+
+
+    public static String decryption(String msg, int shift) {
+        return msg.toLowerCase()
+                .codePoints()
+                .mapToObj(c -> {
+                    if (Character.isWhitespace(c)) {
+                        return ' ';
+                    } else {
+                        int keyVal = (ALPHABET.indexOf(c) - shift) % 26;
+                        keyVal = keyVal < 0 ? ALPHABET.length() + keyVal : keyVal;
+                        return ALPHABET.charAt(keyVal);
+                    }
+                })
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
     }
-    
-    
-    public static void main(String[] args) 
-    {
-        Scanner in=new Scanner(System.in);
-        System.out.println("if you want encryption press 1,if you want decryption press 2");
-        int n=in.nextInt();
+
+
+    public static void main(String[] args) {
+        out.println("if you want encryption press 1,if you want decryption press 2");
+        int command = in.nextInt();
         in.nextLine();
-        if(n==1)
-        {
-            System.out.println("Please enter your message");
-        String msg=in.nextLine();
-        System.out.println("Please enter your key");
-        int k=in.nextInt();
-        
-        encryption(msg,k);
-            
+        switch (command) {
+            case 1:
+                out.println("Please enter your message");
+                final String msgToEencrypt = in.nextLine();
+                out.println("Please enter your key");
+                final int keyToEencrypt = in.nextInt();
+                out.println(encryption(msgToEencrypt, keyToEencrypt));
+                break;
+            case 2:
+                out.println("Please enter your message");
+                final String msgToDecrypt = in.nextLine();
+                out.println("Please enter your key");
+                final int keyToDecrypt = in.nextInt();
+                out.println(decryption(msgToDecrypt, keyToDecrypt));
+                break;
         }
-        if(n==2)
-        {
-        System.out.println("Please enter your message");
-        String msg=in.nextLine();
-        System.out.println("Please enter your key");
-        int k=in.nextInt();
-        decryption(msg,k);
-        
-        }
+
     }
-    
+
 }
