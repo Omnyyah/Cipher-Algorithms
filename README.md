@@ -8,3 +8,10 @@ In this way, a message that initially was quite readable, ends up in a form that
 
 # How does Affine cipher work?
 The affine cipher is a type of monoalphabetic substitution cipher, wherein each letter in an alphabet is mapped to its numeric equivalent, encrypted using a simple mathematical function, and converted back to a letter. The formula used means that each letter encrypts to one other letter, and back again, meaning the cipher is essentially a standard substitution cipher with a rule governing which letter goes to which. As such, it has the weaknesses of all substitution ciphers. Each letter is enciphered with the function (ax + b) mod 26, where b is the magnitude of the shift.
+
+# How does Vigenère cipher work?
+
+# How does AutoKey cipher work?
+This cipher is based on Vigenère cipher, the only difference here is that instead of repeating the key, we will put the key as prefix to the message or the plain text that user wants to encrypt.
+
+# How does Playfair cipher work?
