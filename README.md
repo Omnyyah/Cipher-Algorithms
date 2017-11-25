@@ -10,6 +10,7 @@ The affine cipher is a type of monoalphabetic substitution cipher, wherein each 
 
 # How does Vigenère cipher work?
 Simplest polyalphabetic substitution cipher, effectively multiple caesar ciphers, key is multiple letters long K = k1 k2 ... kd and ith letter specifies ith alphabet to use, then repeat from start after d letters in message.
+*In this repo I used vigenere table, to learn more about the table -> http://pages.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-Base.html
 
 # How does AutoKey cipher work?
 This cipher is based on Vigenère cipher, the only difference here is that instead of repeating the key, we will put the key as prefix to the message or the plain text that user wants to encrypt.
